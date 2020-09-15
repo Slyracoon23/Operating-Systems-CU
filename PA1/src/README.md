@@ -29,7 +29,7 @@ To compile the cs3753_add test program run:
 ``` sh
 gcc cs3753_test.c -o test
 ./test
-
+```
 ## Test
 If build helloworld was successful you should see "HELLO WORLD" in ``dmesg`` or ``/var/log/syslog``
 
