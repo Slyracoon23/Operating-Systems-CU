@@ -1,0 +1,21 @@
+Sep 14 20:32:03 earl-virtual-machine anacron[1073]: Job `cron.daily' terminated (exit status: 1) (mailing output)
+Sep 14 20:32:03 earl-virtual-machine anacron[1073]: anacron: Can't find sendmail at /usr/sbin/sendmail, not mailing output
+Sep 14 20:32:03 earl-virtual-machine anacron[1073]: Can't find sendmail at /usr/sbin/sendmail, not mailing output
+Sep 14 20:32:03 earl-virtual-machine anacron[1073]: Normal exit (1 job run)
+Sep 14 20:32:06 earl-virtual-machine systemd[1]: Started Session 2 of user earl.
+Sep 14 20:32:30 earl-virtual-machine systemd[1]: Started Session 3 of user earl.
+Sep 14 20:32:38 earl-virtual-machine systemd[1]: Started Session 4 of user earl.
+Sep 14 20:33:00 earl-virtual-machine systemd[1]: Started Session 5 of user earl.
+Sep 14 20:34:52 earl-virtual-machine systemd[1]: Started Session 6 of user earl.
+Sep 14 20:35:43 earl-virtual-machine systemd[1]: Started Session 7 of user earl.
+Sep 14 20:37:23 earl-virtual-machine systemd[1]: Started Session 8 of user earl.
+Sep 14 20:38:14 earl-virtual-machine systemd[1]: Started Session 9 of user earl.
+Sep 14 20:38:42 earl-virtual-machine systemd[1]: Started Session 10 of user earl.
+Sep 14 20:39:31 earl-virtual-machine systemd[1]: Started Session 11 of user earl.
+Sep 14 20:40:27 earl-virtual-machine systemd[1]: Started Session 12 of user earl.
+Sep 14 20:40:59 earl-virtual-machine systemd[1]: Started Session 13 of user earl.
+Sep 14 20:41:57 earl-virtual-machine systemd[1]: Starting Cleanup of Temporary Directories...
+Sep 14 20:41:57 earl-virtual-machine systemd-tmpfiles[3030]: [/usr/lib/tmpfiles.d/var.conf:14] Duplicate line for path "/var/log", ignoring.
+Sep 14 20:41:57 earl-virtual-machine systemd[1]: Started Cleanup of Temporary Directories.
+Sep 14 20:52:27 earl-virtual-machine kernel: [ 1551.531989] ADDING 2 AND 4
+Sep 14 20:52:27 earl-virtual-machine kernel: [ 1551.531999] stored result is: 6
