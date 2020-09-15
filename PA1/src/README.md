@@ -30,7 +30,7 @@ To compile the cs3753_add test program run:
 gcc cs3753_test.c -o test
 ./test
 ```
-## Test
+## Verify Test
 If build helloworld was successful you should see "HELLO WORLD" in ``dmesg`` or ``/var/log/syslog``
 
 If build cs3753_add was successful you should see "The result is 6"
