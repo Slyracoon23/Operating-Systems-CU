@@ -10,49 +10,51 @@ char menu_select(void);
 
 int main(){
 	/* Variable Declarations: */
-	char input;
+	char option;
 	int length;
 	int whence;
 	int currPos;
 	char buffer[BUFF_SIZE];
-	int file = open(DEVICE_NAME, O_RDWR);
+	int fd = open(DEVICE_NAME, O_RDWR); // open file with read write privileges
 	bool running = true;
 
 	while(running){
-		char input = menu_select();
+		memset(buffer, 0, BUFF_SIZE); // reset buffer
+		char option = menu_select();
 
-		switch(input){
+		switch(option){
 			case 'r':
 				/* ask user how many bytes */
-				printf("How many bytes to read: "); 
+				printf("Enter the number of bytes you want to read: "); 
 
 				 /* user inputs length of how many bytes */
 				scanf("%d", &length);
 
 				/* reads from the file, puts it to the buffer for x-length */
-				int checkRead = read(file, buffer, length); 
+				int checkRead = read(fd, buffer, length); 
 				if(checkRead != 0){
 					printf("Not enough buffer space to read\n");
 				}
 				else{
 				/* prints the buffer */
 				printf("Reading: %s\n", buffer); 
-				}	
-				while(getchar() != '\n'); 
+				}
+				int c;
+				while(c = getchar() != '\n'  && c != EOF);  // flush stdin
 				break;
 
 			case 'w':
 				/* User writes to the file*/
 				printf("Writing:"); 
 				
-				scanf("%s", buffer);
-
+				scanf("%s", buffer); // unsafe to go out of bounds
+				buffer[BUFF_SIZE -1] = '\0'; // Null terminated just in case
 				/* writes the buffer to file */
-				int checkWrite = write(file, buffer, strlen(buffer));
+				int checkWrite = write(fd, buffer, strlen(buffer)); 
 				if(checkWrite == 0){
 					printf("Not enough buffer space to write\n");
 				}
-				while(getchar() != '\n'); 
+				while(getchar() != '\n');  // flush local buffer
 				break;
 
 			case 's':
@@ -70,8 +72,8 @@ int main(){
 				printf("\nEnter an offset value: ");
 				scanf("%d", &currPos);
 
-				/*llseek operation */
-				llseek(file, currPos, whence);
+				/*llseek operation to reposition read/write file */
+				llseek(fd, currPos, whence);
 				while(getchar() != '\n'); 
 				break;
 
@@ -87,20 +89,20 @@ int main(){
 				break;
 		}
 	}
-	close(file);
+	close(fd);
 	return 0;
 }
 
 char menu_select(void){
-	char input = 0;
+	char option = 0;
 	/* Print menu */
-	printf("Menu:\n");
-	printf("'r' to read from device\n");
-	printf("'w' to write to device\n");
-	printf("'s' to seek from device\n");
-	printf("'e' to exit from device\n");
+	printf("****Please Enter the Option******\n");
+	printf("Option 'r' to read from device\n");
+	printf("Option 'w' to write to device\n");
+	printf("Option 's' to seek from device\n");
+	printf("Option 'e' to exit from device\n");
 	printf("Input: ");
 	/* Retrieve the user input */
-	scanf("%c", &input);
-	return input;
+	scanf("%c", &option);
+	return option;
 }
