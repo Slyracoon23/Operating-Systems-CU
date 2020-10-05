@@ -1,5 +1,5 @@
 # Programming Assignment 2
-Author: Earl Potter , Email: eapo2776@colorado.edu
+Author: Earl Potters , Email: eapo2776@colorado.edu
 
 ## Description
 - ``simple_char_driver.c``: A device driver with read, write, seek, open, and close operations.
