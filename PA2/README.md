@@ -6,7 +6,7 @@ Author: Earl Potter , Email: eapo2776@colorado.edu
 
 - ``test_driver.c``: Test code to the the file operations of the character device driver.
 
-- ``Makefile``: Makefile for building the device derver. It creates a loadable kernel object.
+- ``Makefile``: Makefile for building the device driver. It creates a loadable kernel object.
 
 ## Build
 Build the LKM by running the Makefile:
@@ -44,4 +44,4 @@ Run the comipiled ``test_driver.c``:
  ```
  ./test_driver
  ```
- Follow the prompts -- enter e to exit the test.
+ Follow the prompts. When you are done just enter e to exit the test.
