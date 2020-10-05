@@ -95,7 +95,7 @@ int simple_char_driver_close (struct inode *pinode, struct file *pfile)
 
 	pr_info(" successfully closed device: %s:\n\n", MYDEV_NAME);
 	pr_info("I have been closed %d times since being loaded\n", close_counter);
-	pr_info("ref=%d\n", (int)module_refcount(THIS_MODULE));
+	pr_info("ref=%d\n", (int)module_refcount(THIS_MODULE)); // see who many modules are using my module
 
 	return 0;
 }
@@ -167,7 +167,6 @@ static int __init simple_char_driver_init(void)
 
 	device_buffer = kmalloc( BUFFER_SIZE, GFP_KERNEL);
 
-	// NOTE -- may use cdev_device add 
 	if(cdev_add(my_cdev, my_device, count) < 0) {
 		pr_err("cdev_add() failed\n");
 		cdev_del(my_cdev);
@@ -177,7 +176,6 @@ static int __init simple_char_driver_init(void)
 	}
 
 
-	// NOTE -- Maybe need to create device
 
 	pr_info("\n Succeded in registering character device %s\n", MYDEV_NAME);
 
