@@ -18,42 +18,39 @@
 #define SHARED_BUFFER_SIZE 20
 #define MAX_IP_ADDRESS INET6_ADDRSTRLEN
 
-int main(int argc, char *argv[]);
-char** get_valid_input_files(char *input_files[], int potential_num, int *total_num_output);
-void *requester_process(void* input_files);
-void *requester_helper(void *input_files, int *num_processed);
-void *resolver_process(void *args);
+
+
 
 typedef struct InputFile {
 
-    pthread_mutex_t file_lock;
-    FILE *fd;
+    pthread_mutex_t mutex_doc;
+    FILE *file_descriptor;
     int finished;
     char *filename;
 
 } InputFile;
 
-typedef struct InputFileList {
+typedef struct ListOfInputFiles { 
 
-    pthread_mutex_t file_list_lock;
+    pthread_mutex_t mutex_doc_list;
     int current_file;
     int total_files;
     int num_processed;
     InputFile files[];
 
-} InputFileList;
+} ListOfInputFiles;
 
 typedef struct OutputFile {
 
-    pthread_mutex_t file_lock;
-    FILE *fd;
+    pthread_mutex_t mutex_doc; 
+    FILE *file_descriptor; 
     char *filename;
 
 } OutputFile;
 
 typedef struct SharedBuffer {
 
-    pthread_mutex_t buffer_lock;
+    pthread_mutex_t mutex_buffer;
     pthread_cond_t buffer_full;
     pthread_cond_t buffer_empty;
     int full;
@@ -65,18 +62,25 @@ typedef struct SharedBuffer {
 
 } SharedBuffer;
 
-struct RequesterThreadArgs {
+struct ReqThreadPool {
 
-    InputFileList *files;
+    ListOfInputFiles *files;
     SharedBuffer *shared_buffer;
     OutputFile serviced_file;
 };
 
-struct ResolverThreadArgs {
+struct ResThreadPool {
 
     SharedBuffer *shared_buffer;
     OutputFile results_file;
 };
+
+char** file_validity(char ** files2input, int numberOfPossibleFiles, int *total_files); //done
+void *requesters_thread(void* files2input);
+void *requesters_thread_helperFunction(void *files2input, int *num_processed);
+void *resolvers_thread(void *arguments);
+
+
 
 
 char *fgets_unlocked(char *s, int n, FILE *stream);
